@@ -9,6 +9,8 @@ Welcome to pyhamcrest_metamatchers's documentation!
 .. toctree::
    documentation
 
+.. image:: https://travis-ci.com/ibolit/pyhamcrest_metamatchers.svg?branch=master
+    :target: https://travis-ci.com/ibolit/pyhamcrest_metamatchers
 
 The goal of this project is to write a number of utility entities to facilitate the development of proper `hamcrest` style
 matchers.

@@ -1,6 +1,7 @@
 # pyhamcrest_metamatchers
 
 [![Documentation Status](https://readthedocs.org/projects/pyhamcrest-metamatchers/badge/?version=latest)](https://pyhamcrest-metamatchers.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://travis-ci.com/ibolit/pyhamcrest_metamatchers.svg?branch=master)](https://travis-ci.com/ibolit/pyhamcrest_metamatchers)
 
 Some matchers for testing pyhamcrest-style matchers.
 
