@@ -10,7 +10,7 @@ requirements = [
 ]
 
 setup(
-    name='django_pyhamcrest',
+    name='pyhamcrest_metamatchers',
     version=version,
     description=(
         'A library for testing pyhamcrest matchers.'
