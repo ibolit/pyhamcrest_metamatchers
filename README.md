@@ -1,4 +1,7 @@
 # pyhamcrest_metamatchers
+
+[![Documentation Status](https://readthedocs.org/projects/pyhamcrest-metamatchers/badge/?version=latest)](https://pyhamcrest-metamatchers.readthedocs.io/en/latest/?badge=latest)
+
 Some matchers for testing pyhamcrest-style matchers.
 
 For now, we have only one of them. More to come.
