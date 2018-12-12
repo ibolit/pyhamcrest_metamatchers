@@ -33,3 +33,6 @@ def always_matches():
 def never_matches():
     return MockNeverMatchingMatcher
 
+@pytest.fixture
+def anything():
+    return "this is just a value"

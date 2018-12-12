@@ -64,7 +64,7 @@ class MetaMatcher(BaseMatcher):
             descr = str(descr)
             descr_is_correct = descr == self.mismatch_description
             if not descr_is_correct:
-                self.wrong_mismatch_description = "The description was <{}>. ".format(
+                self.wrong_mismatch_description = "The mismatch_description was <{}>. ".format(
                     descr)
                 ret = False
 
@@ -85,7 +85,7 @@ class MetaMatcher(BaseMatcher):
             ))
 
         if self.mismatch_description:
-            description.append_text(" With mismatch_description: <{}>".format(
+            description.append_text(" With tne mismatch_description: <{}>".format(
                 self.mismatch_description
             ))
 
