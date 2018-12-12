@@ -57,14 +57,14 @@ class MetaMatcher(BaseMatcher):
         if self.mismatch_description:
             if ret == self.expected_match_result:
                 self.wrong_mismatch_description = (
-                    "The matcher matched, but a mismatch description was provided")
+                    "the matcher matched, but a mismatch description was provided")
                 return False
             descr = StringDescription()
             matcher.describe_mismatch(self.item, descr)
             descr = str(descr)
             descr_is_correct = descr == self.mismatch_description
             if not descr_is_correct:
-                self.wrong_mismatch_description = "The mismatch_description was <{}>. ".format(
+                self.wrong_mismatch_description = "the mismatch_description was <{}>".format(
                     descr)
                 ret = False
 
@@ -72,45 +72,47 @@ class MetaMatcher(BaseMatcher):
 
 
     def describe_to(self, description):
-        description.append_text("A matcher that ")
-        if not self.expected_match_result:
-            description.append_text("does not match ")
-        else:
-            description.append_text("matches ")
-        description.append_text("the item.")
+        ret = []
+        descriptions = []
+        ret.append("A matcher that {} the item".format(
+            "matches" if self.expected_match_result else "does not match"))
 
         if self.description:
-            description.append_text(" With the description: <{}>".format(
-                self.description
-            ))
+            descriptions.append(
+                "with the description: <{}>".format(self.description))
 
         if self.mismatch_description:
-            description.append_text(" With tne mismatch_description: <{}>".format(
-                self.mismatch_description
-            ))
+            descriptions.append(
+                "with tne mismatch_description: <{}>".format(
+                    self.mismatch_description))
 
+        ret.append(" and ".join(descriptions))
 
-    # def _mismatch_description_should_be_present(self):
-    #     return self.result == self.match_result == False
+        string = "{}.".format(" ".join(filter(None, ret)))
+        description.append_text(_sentence_case(string))
+
 
 
     def describe_mismatch(self, item, mismatch_description):
+        ret = []
+
         if self.match_result != self.expected_match_result:
-            mismatch_description.append_text("The matcher ")
-            if self.match_result:
-                mismatch_description.append_text("matched. ")
-            else:
-                mismatch_description.append_text("did not match. ")
+            ret.append("the matcher {}".format(
+                "matched" if self.match_result else "did not match"
+            ))
+
         if self.wrong_description:
-            mismatch_description.append_text("The description was <{}>. ".format(
+            ret.append("the description was <{}>".format(
                 self.wrong_description
             ))
 
-
         if self.wrong_mismatch_description:
-            mismatch_description.append_text(
+            ret.append(
                 self.wrong_mismatch_description
             )
+
+        string = "{}.".format(", ".join(ret))
+        mismatch_description.append_text(_sentence_case(string))
 
 
 def matches(a_matcher):
@@ -129,3 +131,7 @@ def doesnt_match(a_matcher):
     :return: :py:class:`pyhamcrest_metamatchers.metamatchers.MetaMatcher<MetaMatcher>`
     """
     return MetaMatcher(a_matcher, False)
+
+
+def _sentence_case(string):
+    return "{}{}".format(string[0].capitalize(), string[1:])

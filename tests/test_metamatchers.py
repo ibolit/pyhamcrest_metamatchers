@@ -32,7 +32,7 @@ class TestMetamatchersMatches:
 
         assert_mismatch_description(
             matcher, always_matches(),
-            "The matcher matched, but a mismatch description was provided")
+            "The matcher matched, but a mismatch description was provided.")
 
         assert_that(match_result, is_(False))
 
@@ -53,8 +53,9 @@ class TestMetamatchersMatches:
         """
         matcher = matches(anything).with_description("This is a description")
         match_result = matcher._matches(always_matches())
-        assert_description(matcher, "A matcher that matches the item. "
-            "With the description: <This is a description>")
+        assert_description(
+            matcher, "A matcher that matches the item "
+            "with the description: <This is a description>.")
         assert_that(match_result, is_(True))
 
 
@@ -66,12 +67,12 @@ class TestMetamatchersMatches:
         match_result = matcher._matches(always_matches())
 
         assert_description(
-            matcher, "A matcher that matches the item. "
-            "With the description: <Wrong description>")
+            matcher, "A matcher that matches the item "
+            "with the description: <Wrong description>.")
 
         assert_mismatch_description(
             matcher, always_matches(),
-            "The description was <This is a description>. ")
+            "The description was <This is a description>.")
 
         assert_that(match_result, is_(False))
 
@@ -85,7 +86,7 @@ class TestMetamatchersMatches:
         matcher = matches(anything)
         match_result = matcher._matches(never_matches())
         assert_mismatch_description(
-            matcher, never_matches(), "The matcher did not match. ")
+            matcher, never_matches(), "The matcher did not match.")
         assert_that(match_result, is_(False))
 
 
@@ -99,11 +100,11 @@ class TestMetamatchersMatches:
         match_result = matcher._matches(never_matches())
 
         assert_description(
-            matcher, "A matcher that matches the item. "
-            "With the description: <This is a description>")
+            matcher, "A matcher that matches the item "
+            "with the description: <This is a description>.")
 
         assert_mismatch_description(
-            matcher, never_matches(), "The matcher did not match. ")
+            matcher, never_matches(), "The matcher did not match.")
 
         assert_that(match_result, is_(False))
 
@@ -118,12 +119,12 @@ class TestMetamatchersMatches:
         match_result = matcher._matches(never_matches())
 
         assert_description(
-            matcher, "A matcher that matches the item. "
-            "With the description: <Wrong description>")
+            matcher, "A matcher that matches the item "
+            "with the description: <Wrong description>.")
 
         assert_mismatch_description(
             matcher, never_matches(),
-            "The matcher did not match. The description was <This is a description>. ")
+            "The matcher did not match, the description was <This is a description>.")
 
         assert_that(match_result, is_(False))
 
@@ -142,13 +143,14 @@ class TestMetamatchersMatches:
 
         assert_description(
             matcher,
-            "A matcher that matches the item. "
-            "With the description: <Wrong description> "
-            "With tne mismatch_description: <This is a mismatch description>")
+            "A matcher that matches the item "
+            "with the description: <Wrong description> and "
+            "with tne mismatch_description: <This is a mismatch description>.")
 
         assert_mismatch_description(
             matcher, never_matches(),
-            "The matcher did not match. The description was <This is a description>. ")
+            "The matcher did not match, "
+            "the description was <This is a description>.")
 
         assert_that(match_result, is_(False))
 
@@ -167,14 +169,14 @@ class TestMetamatchersMatches:
 
         assert_description(
             matcher,
-            "A matcher that matches the item. "
-            "With the description: <Wrong description> "
-            "With tne mismatch_description: <Wrong mismatch description>")
+            "A matcher that matches the item "
+            "with the description: <Wrong description> and "
+            "with tne mismatch_description: <Wrong mismatch description>.")
 
         assert_mismatch_description(
             matcher, never_matches(),
-            "The matcher did not match. "
-            "The description was <This is a description>. "
-            "The mismatch_description was <This is a mismatch description>. ")
+            "The matcher did not match, "
+            "the description was <This is a description>, "
+            "the mismatch_description was <This is a mismatch description>.")
 
         assert_that(match_result, is_(False))
