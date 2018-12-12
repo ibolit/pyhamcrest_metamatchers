@@ -3,8 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pyhamcrest_metamatchers's documentation!
+pyhamcrest_metamatchers
 ===================================================
+
+So that you can match your matchers with matchers, while you are writing matchers!
+
+*But seriously:* Hamcrest and hamcrest-style matchers help in writing modular
+and reusable tests, but for that the matchers themselves must be reliable.
+Now you can develop your own custom matchers and be sure that they are.
+All you need to do is to test them using metamatchers.
+
 
 .. toctree::
    documentation
@@ -21,15 +29,18 @@ that it produces the correct descriptions and mismatch descriptions. Here is a c
 
 .. code-block:: python
 
-    def test_wrong_status_with_wrong_headers(response_200):
-        assert_that(
-            status(300).with_headers({"Hello-Dude": "application/json"}),
-            doesnt_match(response_200)
-                .with_description(
-                    "An HttpResponse object with status_code <300>, "
-                    "with headers: \"Hello-Dude: 'application/json'\".")
-                .with_mismatch_description(
-                    "Status code was: <200>. Does not contain header "
-                    "<Hello-Dude>.")
-        )
+     def test_is_twice_as_big_as(...)
+         assert_that(
+             is_twice_as_big_as(2),
+             matches(4).with_description("An int twice as big as <2>")
+         )
+
+     def test_is_twice_as_big_as_not_matching(...)
+         assert_that(
+             is_twice_as_big_as(2),
+             doesnt_match(7)\
+                 .with_description("An int twice as big as <2>")\
+                 .with_mismatch_description("was <7>")
+         )
+
 
