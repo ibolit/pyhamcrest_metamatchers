@@ -3,10 +3,11 @@
 
 from setuptools import setup
 
-version = "0.0.0"
+from pyhamcrest_metamatchers import __version__
+version = __version__
 
 requirements = [
-    # "pyhamcrest>=1.9"
+    "pyhamcrest>=1.9"
 ]
 
 setup(
